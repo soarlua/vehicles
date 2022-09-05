@@ -1,5 +1,6 @@
 package com.interview.vehicles.app.providers;
 
+import com.interview.vehicles.app.providers.converter.VehiclesConverter;
 import com.interview.vehicles.app.providers.repository.Vehicle;
 import com.interview.vehicles.app.providers.repository.VehicleRepository;
 import com.interview.vehicles.domain.entity.VehicleEntity;
@@ -12,8 +13,11 @@ public class AddVehicleProvidersImpl implements AddVehicleProvider {
 
     @Autowired
     private VehicleRepository vehicleRepository;
+    @Autowired
+    private VehiclesConverter vehiclesConverter;
     @Override
-    public void saveVehicle(Vehicle vehicleEntity) {
-        vehicleRepository.save(vehicleEntity);
+    public void saveVehicle(VehicleEntity vehicleEntity) {
+
+        vehicleRepository.save(vehiclesConverter.toVehicleEntity(vehicleEntity));
     }
 }

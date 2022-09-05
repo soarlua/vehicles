@@ -1,6 +1,7 @@
 package com.interview.vehicles.app.entrypoint.http;
 
 import com.interview.vehicles.app.providers.repository.Vehicle;
+import com.interview.vehicles.app.providers.strategy.ProviderEnum;
 import com.interview.vehicles.domain.entity.VehicleEntity;
 import com.interview.vehicles.domain.usecase.AddVehicleUseCase;
 import com.interview.vehicles.domain.usecase.GetAllVehiclesUseCase;
@@ -25,8 +26,8 @@ public class VehiclesController {
     }
 
     @PostMapping
-    public void addVehicle(Vehicle vehicleEntity) {
-        addVehicleUseCase.execute(vehicleEntity);
+    public void addVehicle(@RequestHeader ProviderEnum provider, @RequestBody VehicleEntity vehicleEntity) {
+        addVehicleUseCase.execute(provider, vehicleEntity);
     }
 
    // @PatchMapping

@@ -1,8 +1,7 @@
 package com.interview.vehicles.app.providers.repository;
 
-import com.sun.istack.NotNull;
-import lombok.Data;
 
+import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,13 +13,10 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
     private String license;
 
-    @NotNull
     private String countryCode;
 
-    @NotNull
     private Double riskDecimal;
 
     private Integer numberOfDoors;

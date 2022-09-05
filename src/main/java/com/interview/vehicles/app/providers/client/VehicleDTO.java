@@ -1,13 +1,9 @@
-package com.interview.vehicles.domain.entity;
+package com.interview.vehicles.app.providers.client;
 
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 @Data
-public class VehicleEntity {
+public class VehicleDTO {
 
     private Long id;
 
