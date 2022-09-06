@@ -1,4 +1,4 @@
-package com.interview.vehicles.app.providers.client;
+package com.interview.vehicles.app.providers.dto;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ public class VehicleDTO {
 
     private String countryCode;
 
-    private Double riskDecimal;
+    private Double riskFactor;
 
     private Integer numberOfDoors;
 

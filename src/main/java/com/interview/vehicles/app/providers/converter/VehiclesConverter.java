@@ -1,6 +1,7 @@
 package com.interview.vehicles.app.providers.converter;
 
-import com.interview.vehicles.app.providers.client.VehicleDTO;
+import com.interview.vehicles.app.providers.dto.VehicleDTO;
+import com.interview.vehicles.app.providers.h2.VehicleExternalInformation;
 import com.interview.vehicles.app.providers.repository.Vehicle;
 import com.interview.vehicles.domain.entity.VehicleEntity;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class VehiclesConverter {
         vehicles.forEach(vehicle -> {
             VehicleEntity vehicleEntity = new VehicleEntity();
             vehicleEntity.setLicense(vehicle.getLicense());
-            vehicleEntity.setRiskDecimal(vehicle.getRiskDecimal());
+            vehicleEntity.setRiskFactor(vehicle.getRiskFactor());
             vehicleEntity.setNumberOfDoors(vehicle.getNumberOfDoors());
             vehicleEntity.setPower(vehicle.getPower());
             vehicleEntity.setCountryCode(vehicle.getCountryCode());
@@ -30,7 +31,7 @@ public class VehiclesConverter {
         Vehicle vehicle = new Vehicle();
 
         vehicle.setLicense(vehicleEntity.getLicense());
-        vehicle.setRiskDecimal(vehicleEntity.getRiskDecimal());
+        vehicle.setRiskFactor(vehicleEntity.getRiskFactor());
         vehicle.setNumberOfDoors(vehicleEntity.getNumberOfDoors());
         vehicle.setPower(vehicleEntity.getPower());
         vehicle.setCountryCode(vehicleEntity.getCountryCode());
@@ -47,5 +48,16 @@ public class VehiclesConverter {
         vehicleEntity.setCountryCode(vehicleDTO.getCountryCode());
         vehicleEntity.setPower(vehicleDTO.getPower());
         return vehicleEntity;
+    }
+
+    public VehicleDTO entityVehicleExternalToDto(VehicleExternalInformation vehicleExternalInformation) {
+        VehicleDTO vehicleDTO = new VehicleDTO();
+        vehicleDTO.setLicense(vehicleExternalInformation.getLicense());
+        vehicleDTO.setFuelType(vehicleExternalInformation.getFuelType());
+        vehicleDTO.setId(vehicleExternalInformation.getId());
+        vehicleDTO.setCountryCode(vehicleExternalInformation.getCountryCode());
+        vehicleDTO.setNumberOfDoors(vehicleExternalInformation.getNumberOfDoors());
+        vehicleDTO.setPower(vehicleExternalInformation.getPower());
+        return vehicleDTO;
     }
 }

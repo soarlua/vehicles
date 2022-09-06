@@ -15,7 +15,7 @@ public class VehicleEntity {
 
     private String countryCode;
 
-    private Double riskDecimal;
+    private Double riskFactor;
 
     private Integer numberOfDoors;
 

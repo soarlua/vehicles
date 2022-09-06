@@ -4,22 +4,34 @@ import com.interview.vehicles.app.providers.strategy.ProviderEnum;
 import com.interview.vehicles.domain.entity.VehicleEntity;
 import com.interview.vehicles.domain.providers.AddVehicleProvider;
 import com.interview.vehicles.domain.providers.GetVehicleByLicenseAndCountryCodeProvider;
+import com.interview.vehicles.domain.usecase.validate.Pair;
+import com.interview.vehicles.domain.usecase.validate.ValidatedException;
+import com.interview.vehicles.domain.usecase.validate.WorkflowValidated;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import javax.inject.Named;
+
 @Slf4j
-@Service
+@Named
 public class AddVehicleUseCase {
 
     private AddVehicleProvider addVehicleProvider;
     private GetVehicleByLicenseAndCountryCodeProvider getVehicleByLicenseAndCountryCode;
 
-    public AddVehicleUseCase(AddVehicleProvider addVehicleProvider, GetVehicleByLicenseAndCountryCodeProvider getVehicleByLicenseAndCountryCode) {
+    private WorkflowValidated workflowValidated;
+
+    public AddVehicleUseCase(AddVehicleProvider addVehicleProvider, GetVehicleByLicenseAndCountryCodeProvider
+            getVehicleByLicenseAndCountryCode, WorkflowValidated workflowValidated) {
         this.addVehicleProvider = addVehicleProvider;
         this.getVehicleByLicenseAndCountryCode = getVehicleByLicenseAndCountryCode;
+        this.workflowValidated = workflowValidated;
     }
     public VehicleEntity execute(ProviderEnum provider,VehicleEntity vehicleEntity) {
 //todo VERIFICAR SE EXISTE NA BASE SE EXISTIR DEVOLVER UM ERRO
         //Spring hANDLEException para manipular excecoes
+        Pair valid = workflowValidated.isValid(vehicleEntity);
+        if(!valid.getFirst()) {
+            throw new ValidatedException(valid.getSecond());
+        }
 
         try {
 
