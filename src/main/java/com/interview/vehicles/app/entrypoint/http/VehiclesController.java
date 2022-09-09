@@ -40,6 +40,4 @@ public class VehiclesController {
         return updateVehicleUseCase.execute(id,vehicleEntity);
     }
 
-
-
 }

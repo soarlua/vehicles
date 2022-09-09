@@ -18,6 +18,7 @@ public class AddVehicleProvidersImpl implements AddVehicleProvider {
     @Override
     public void saveVehicle(VehicleEntity vehicleEntity) {
 
-        vehicleRepository.save(vehiclesConverter.toVehicleEntity(vehicleEntity));
+        Vehicle vehicleCreated = vehiclesConverter.toVehicleEntity(vehicleEntity);
+        vehicleRepository.save(vehicleCreated);
     }
 }

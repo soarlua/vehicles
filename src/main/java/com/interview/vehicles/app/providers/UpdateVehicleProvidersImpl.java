@@ -20,13 +20,13 @@ public class UpdateVehicleProvidersImpl implements UpdateVehicleProvider {
     private VehiclesConverter vehiclesConverter;
     @Override
     public VehicleEntity updateVehicle(Long id, VehicleEntity vehicleEntity) {
-        Vehicle vehicle = new Vehicle();
-        vehicle.setId(vehicleEntity.getId());
-        vehicle.setLicense(vehicleEntity.getLicense());
-        vehicle.setRiskFactor(vehicleEntity.getRiskFactor());
-        vehicle.setCountryCode(vehicleEntity.getCountryCode());
-        vehicleRepository.save(vehicle);
-        return vehiclesConverter.vehicleToVehicleEntity(vehicleRepository.findById(id));
 
+        Optional<Vehicle> vehicleFounded = vehicleRepository.findById(id);
+        if(vehicleFounded.isPresent())
+            vehicleFounded.get().setLicense(vehicleEntity.getLicense());
+            vehicleFounded.get().setCountryCode(vehicleEntity.getCountryCode());
+            vehicleFounded.get().setRiskFactor(vehicleEntity.getRiskFactor());
+        vehicleRepository.save(vehicleFounded.get());
+        return vehiclesConverter.vehicleToVehicleEntity(vehicleRepository.findById(id));
     }
 }

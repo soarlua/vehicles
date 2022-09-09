@@ -21,6 +21,7 @@ public class VehiclesConverter {
             vehicleEntity.setNumberOfDoors(vehicle.getNumberOfDoors());
             vehicleEntity.setPower(vehicle.getPower());
             vehicleEntity.setCountryCode(vehicle.getCountryCode());
+            vehicleEntity.setFuelType(vehicle.getFuelType());
             vehicleEntity.setId(vehicle.getId());
             vehicleEntities.add(vehicleEntity);
         });
@@ -36,6 +37,7 @@ public class VehiclesConverter {
         vehicle.setNumberOfDoors(vehicleEntity.getNumberOfDoors());
         vehicle.setPower(vehicleEntity.getPower());
         vehicle.setCountryCode(vehicleEntity.getCountryCode());
+        vehicle.setFuelType(vehicleEntity.getFuelType());
         vehicle.setId(vehicleEntity.getId());
 
         return vehicle;
@@ -71,6 +73,7 @@ public class VehiclesConverter {
         vehicleEntity.setPower(vehicle.get().getPower());
         vehicleEntity.setCountryCode(vehicle.get().getCountryCode());
         vehicleEntity.setId(vehicle.get().getId());
+        vehicleEntity.setFuelType(vehicle.get().getFuelType());
 
         return vehicleEntity;
     }
