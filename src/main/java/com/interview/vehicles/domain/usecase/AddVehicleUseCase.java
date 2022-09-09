@@ -26,8 +26,7 @@ public class AddVehicleUseCase {
         this.workflowValidated = workflowValidated;
     }
     public VehicleEntity execute(ProviderEnum provider,VehicleEntity vehicleEntity) {
-//todo VERIFICAR SE EXISTE NA BASE SE EXISTIR DEVOLVER UM ERRO
-        //Spring hANDLEException para manipular excecoes
+
         Pair valid = workflowValidated.isValid(vehicleEntity);
         if(!valid.getFirst()) {
             throw new ValidatedException(valid.getSecond());

@@ -7,6 +7,7 @@ import com.interview.vehicles.domain.entity.VehicleEntity;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class VehiclesConverter {
@@ -59,5 +60,18 @@ public class VehiclesConverter {
         vehicleDTO.setNumberOfDoors(vehicleExternalInformation.getNumberOfDoors());
         vehicleDTO.setPower(vehicleExternalInformation.getPower());
         return vehicleDTO;
+    }
+
+    public VehicleEntity vehicleToVehicleEntity(Optional<Vehicle> vehicle) {
+        VehicleEntity vehicleEntity = new VehicleEntity();
+
+        vehicleEntity.setLicense(vehicle.get().getLicense());
+        vehicleEntity.setRiskFactor(vehicle.get().getRiskFactor());
+        vehicleEntity.setNumberOfDoors(vehicle.get().getNumberOfDoors());
+        vehicleEntity.setPower(vehicle.get().getPower());
+        vehicleEntity.setCountryCode(vehicle.get().getCountryCode());
+        vehicleEntity.setId(vehicle.get().getId());
+
+        return vehicleEntity;
     }
 }

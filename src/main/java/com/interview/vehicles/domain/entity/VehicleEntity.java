@@ -21,5 +21,5 @@ public class VehicleEntity {
 
     private String fuelType;
 
-    private Integer Power;
+    private Integer power;
 }

@@ -5,7 +5,9 @@ import com.interview.vehicles.app.providers.strategy.ProviderEnum;
 import com.interview.vehicles.domain.entity.VehicleEntity;
 import com.interview.vehicles.domain.usecase.AddVehicleUseCase;
 import com.interview.vehicles.domain.usecase.GetAllVehiclesUseCase;
+import com.interview.vehicles.domain.usecase.UpdateVehicleUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +22,9 @@ public class VehiclesController {
     @Autowired
     private AddVehicleUseCase addVehicleUseCase;
 
+    @Autowired
+    private UpdateVehicleUseCase updateVehicleUseCase;
+
     @GetMapping
     public List<VehicleEntity> getAllVehicles() {
         return getAllVehiclesUseCase.execute();
@@ -30,6 +35,11 @@ public class VehiclesController {
         addVehicleUseCase.execute(provider, vehicleEntity);
     }
 
-   // @PatchMapping
+    @PatchMapping(path = "/{id}")
+    public VehicleEntity updateVehicle(@NonNull @PathVariable("id") Long id, @RequestBody VehicleEntity vehicleEntity) {
+        return updateVehicleUseCase.execute(id,vehicleEntity);
+    }
+
+
 
 }
